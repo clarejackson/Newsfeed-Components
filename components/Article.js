@@ -114,3 +114,61 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+// Step 1: Write a component called 'articleMaker' to create an article.
+//   Your component is a function that takes an article object as its only argument,
+// and returns a DOM node looking like the one below:
+
+//   <div class="article">
+//     <h2>{title of the article}</h2>
+//     <p class="date">{date of the article}</p>
+
+//     {three separate paragraph elements}
+
+//     <span class="expandButton">+</span>
+//   </div>
+
+const articleMaker = (article) => {
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const pOne = document.createElement('p');
+  const pTwo = document.createElement('p');
+  const pThree = document.createElement('p');
+  const span = document.createElement('span');
+
+  div.classList.add('article');
+  date.classList.add('date');
+  span.classList.add('expandButton');
+
+  h2.textContent = article.title;
+  date.textContent = article.date;
+  pOne.textContent = article.firstParagraph;
+  pTwo.textContent = article.secondParagraph;
+  pThree.textContent = article.thirdParagraph;
+  span.textContent = '+';
+
+  div.appendChild(h2);
+  div.appendChild(date);
+  div.appendChild(pOne);
+  div.appendChild(pTwo);
+  div.appendChild(pThree);
+  div.appendChild(span);
+// console.log(article.firstParagraph);
+  
+
+  return div;
+  // console.log(div);
+}
+
+// console.log(articleMaker());
+const parent = document.querySelector('.articles');
+
+data.forEach(article => { 
+  // console.log(articleMaker(article));
+  parent.appendChild(articleMaker(article));
+});
+// data.forEach(object => {
+//   const parent = articleMaker(object);
+//   document.querySelector('.articles').appendChild(parent);
+// });
+// console.log(parent);
