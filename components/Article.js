@@ -1,4 +1,3 @@
-// This is the data we will be using to create our articles. Look at it, then proceed to line 93.
 // OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
 const data = [
@@ -18,7 +17,7 @@ const data = [
         solo leia ben ponda jade.Binks jango aayla skywalker skywalker cade.Mustafar darth ventress anakin watto.Yavin jawa sebulba
         owen jinn tatooine sith organa.`,
 
-    thirdParagraph: `Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidious
+    thirdParagraph: `Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidiousz
         naboo ackbar tatooine. Hutt lars padmé darth. Maul solo darth darth jabba qui-gon chewbacca darth maul. Moff baba wicket
         han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi'lek padmé wookiee. Leia
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
@@ -86,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Another Student Passes Though',
+    date: 'Oct 8th, 2020',
+    firstParagraph: `We can reject everything else: religion, ideology, all received wisdom. But we cannot escape the necessity of love and compassion.... This, then, is my true religion, my simple faith. In this sense, there is no need for temple or church, for mosque or synagogue, no need for complicated philosophy, doctrine or dogma. Our own heart, our own mind, is the temple. The doctrine is compassion. Love for others and respect for their rights and dignity, no matter who or what they are: ultimately these are all we need. So long as we practice these in our daily lives, then no matter if we are learned or unlearned, whether we believe in Buddha or God, or follow some other religion or none at all, as long as we have compassion for others and conduct ourselves with restraint out of a sense of responsibility, there is no doubt we will be happy.`,
+
+    secondParagraph: `The compassion we feel normally is biased and mixed with attachment. Genuine compassion flows towards all living beings, particularly your enemies. If I try to develop compassion towards my enemy, it may not benefit him directly, he may not even be aware of it. But it will immediately benefit me by calming my mind. On the other hand, if I dwell on how awful everything is, I immediately lose my peace of mind.`,
+
+    thirdParagraph: `It is clear that feelings of love, affection, closeness and compassion bring happiness. I believe that every one of us has the means to be happy, to access the warm and compassionate states of mind that bring happiness. In fact, it is one of my fundamental beliefs that not only do we inherently possess the potential for compassion, but I believe that the basic or underlying nature of human beings is gentleness.`
   }
 ];
 
@@ -114,18 +122,7 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
-// Step 1: Write a component called 'articleMaker' to create an article.
-//   Your component is a function that takes an article object as its only argument,
-// and returns a DOM node looking like the one below:
 
-//   <div class="article">
-//     <h2>{title of the article}</h2>
-//     <p class="date">{date of the article}</p>
-
-//     {three separate paragraph elements}
-
-//     <span class="expandButton">+</span>
-//   </div>
 
 const articleMaker = (article) => {
   const div = document.createElement('div');
@@ -147,6 +144,12 @@ const articleMaker = (article) => {
   pThree.textContent = article.thirdParagraph;
   span.textContent = '+';
 
+  span.addEventListener("click", () => {
+    div.classList.toggle('article-open');
+    // div.classList.toggle('close');
+
+});
+
   div.appendChild(h2);
   div.appendChild(date);
   div.appendChild(pOne);
@@ -154,10 +157,10 @@ const articleMaker = (article) => {
   div.appendChild(pThree);
   div.appendChild(span);
 // console.log(article.firstParagraph);
-  
 
+  console.log(div);
   return div;
-  // console.log(div);
+  
 }
 
 // console.log(articleMaker());
@@ -167,8 +170,4 @@ data.forEach(article => {
   // console.log(articleMaker(article));
   parent.appendChild(articleMaker(article));
 });
-// data.forEach(object => {
-//   const parent = articleMaker(object);
-//   document.querySelector('.articles').appendChild(parent);
-// });
-// console.log(parent);
+
